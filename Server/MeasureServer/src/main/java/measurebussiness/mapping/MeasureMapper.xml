@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="measurebussiness.dao.MeasureMapper" >
+  <resultMap id="BaseResultMap" type="measurebussiness.model.Measure" >
+    <id column="recordtime" property="recordtime" jdbcType="BIGINT" />
+    <id column="devaddr" property="devaddr" jdbcType="VARCHAR" />
+    <result column="distance" property="distance" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    recordtime, devaddr, distance
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="measurebussiness.model.MeasureKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from MeasureTb
+    where recordtime = #{recordtime,jdbcType=BIGINT}
+      and devaddr = #{devaddr,jdbcType=VARCHAR}
+  </select>
+  <select id="queryMeasureByAddrTime" resultMap="BaseResultMap">
+    select * from MeasureTb
+    where  devaddr=#{param1,jdbcType=VARCHAR} and recordtime &gt;= #{param2,jdbcType=BIGINT} and recordtime &lt;= #{param3,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="measurebussiness.model.MeasureKey" >
+    delete from MeasureTb
+    where recordtime = #{recordtime,jdbcType=BIGINT}
+      and devaddr = #{devaddr,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="measurebussiness.model.Measure" >
+    insert into MeasureTb (recordtime, devaddr, distance
+      )
+    values (#{recordtime,jdbcType=BIGINT}, #{devaddr,jdbcType=VARCHAR}, #{distance,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="measurebussiness.model.Measure" >
+    insert into MeasureTb
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recordtime != null" >
+        recordtime,
+      </if>
+      <if test="devaddr != null" >
+        devaddr,
+      </if>
+      <if test="distance != null" >
+        distance,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recordtime != null" >
+        #{recordtime,jdbcType=BIGINT},
+      </if>
+      <if test="devaddr != null" >
+        #{devaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="distance != null" >
+        #{distance,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="measurebussiness.model.Measure" >
+    update MeasureTb
+    <set >
+      <if test="distance != null" >
+        distance = #{distance,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where recordtime = #{recordtime,jdbcType=BIGINT}
+      and devaddr = #{devaddr,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="measurebussiness.model.Measure" >
+    update MeasureTb
+    set distance = #{distance,jdbcType=DOUBLE}
+    where recordtime = #{recordtime,jdbcType=BIGINT}
+      and devaddr = #{devaddr,jdbcType=VARCHAR}
+  </update>
+</mapper>

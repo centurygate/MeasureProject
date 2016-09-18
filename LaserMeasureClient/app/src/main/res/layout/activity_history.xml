@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="55dip"
+        android:background="@color/colorPrimary">
+
+        <Button android:id="@+id/title_pre"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:layout_gravity="center"
+            android:background="@drawable/back_bg"
+            android:text="前页"
+            android:textColor="#fff"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="历史记录"
+            android:textColor="#fff"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/title_next"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:layout_gravity="center"
+            android:background="@drawable/edit_bg"
+            android:text="后页"
+            android:textColor="#fff"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
+
